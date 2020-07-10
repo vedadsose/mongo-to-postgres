@@ -62,7 +62,7 @@ readFile(args.file, 'UTF-8', (error, data) => {
     .map(field => `  ${field} ${schema[field]}`)
     .join(',\n')
 
-  const createTableSQL = `CREATE TABLE ${args.name} (\n${fields}\n);`
+  const createTableSQL = `CREATE TABLE IF NOT EXISTS ${args.name} (\n${fields}\n);`
 
   const entriesSQL = pipe(
     map(parseEntry(args.name, schema)),
